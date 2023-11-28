@@ -10,15 +10,19 @@ function App() {
     ).then(
       data => {
         setbackData(data)
-      }
-    )
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+      });
   }, [])
 
   return (
     <div >
-      {(typeof backData.users === 'underfined') ? (
+      {(typeof backData.users === 'undefined') ? (
         <p>Loading....</p>
-      ):(backData.users.map((user, i) => (
+      ): backData.users === null ? (
+        <p>No users available</p>
+      ) : (backData.users.map((user, i) => (
         <p key={i} >{user}</p>
       ))
       )}
