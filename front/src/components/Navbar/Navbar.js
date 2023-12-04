@@ -5,6 +5,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 //Reference: https://mui.com/material-ui/react-app-bar/
 
@@ -12,7 +13,7 @@ function Navbar() {
   return (
     <AppBar
       position="static"
-      style={{ marginTop: "200px" }}
+      style={{ marginTop: "0px" }}
       sx={{ bgcolor: "black" }}
     >
       <Container maxWidth="x1">
@@ -33,6 +34,8 @@ function Navbar() {
           </Typography>
           <Box>
             <Button
+              component={Link}
+              to="/"
               sx={{
                 color: "white",
                 ":hover": { bgcolor: "grey", color: "white" },
@@ -41,6 +44,8 @@ function Navbar() {
               Home
             </Button>
             <Button
+              component={Link}
+              to="/search"
               sx={{
                 color: "white",
                 ":hover": { bgcolor: "grey", color: "white" },
@@ -49,6 +54,8 @@ function Navbar() {
               Search
             </Button>
             <Button
+              component={Link}
+              to="/result"
               sx={{
                 color: "white",
                 ":hover": { bgcolor: "grey", color: "white" },

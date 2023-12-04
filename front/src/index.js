@@ -6,22 +6,20 @@ import Search from "./components/Search/Search";
 import Navbar from "./components/Navbar/Navbar";
 import Result from "./components/Result/Result";
 import "./styles/global.css";
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useRouteError,
-} from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <Navbar />
-
-    <Homepage />
-    <Search />
-    <Result />
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/result" element={<Result />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
