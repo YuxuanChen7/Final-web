@@ -1,16 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import Homepage from './components/Homepage/Homepage'
-import Search from './components/Search/Search'
-import './styles/global.css';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import Homepage from "./components/Homepage/Homepage";
+import Search from "./components/Search/Search";
+import Navbar from "./components/Navbar/Navbar";
+import Result from "./components/Result/Result";
+import "./styles/global.css";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useRouteError,
+} from "react-router-dom";
+import reportWebVitals from "./reportWebVitals";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <NavBar/>
+    
     <Homepage />
     <Search />
+    <Result />
   </React.StrictMode>
 );
 

@@ -5,8 +5,9 @@ import './Homepage.css'
 function Homepage(){
     return(
         <div>
-        <h1>Homepage Component</h1>
-        <p>this website application is intended to generate our customer with a filtered choices of pets fast and accurate</p>
+        <h1>Welcome!</h1>
+        <h3>This website application is intended to generate our user with a filtered choices of pets fast and accurate</h3>
+        <p>Message to Professor: Used MUI library for better look</p>
         <img src={catdogdle} alt="Home" className='smaller-image'/>
         </div>
     );
