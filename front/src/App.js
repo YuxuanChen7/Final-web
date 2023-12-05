@@ -34,6 +34,8 @@ function App() {
       ) : (
         backData.users.map((user, i) => <p key={i}>{user}</p>)
       )}
+
+      <button onClick={addToFavorites}>Add to Favorites</button>
     </div>
   );
 }
