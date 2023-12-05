@@ -14,6 +14,17 @@ function App() {
       });
   }, []);
 
+  const renderCatInfo = (cat) => {
+    return (
+      <div key={cat.id}>
+        <h3>{cat.name}</h3>
+        <p>Age: {cat.age}</p>
+        <p>Color: {cat.color}</p>
+        <hr />
+      </div>
+    );
+  };
+
   return (
     <div>
       {typeof backData.users === "undefined" ? (
