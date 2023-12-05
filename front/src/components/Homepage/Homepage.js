@@ -7,10 +7,9 @@ function Homepage() {
     <div>
       <h1>Welcome!</h1>
       <h3>
-        This website application is intended to generate our user with a
-        filtered choices of pets fast and accurate
+        this web application is intended to generate a list of pets
+        recommendation based on the input attributes
       </h3>
-      <p>Message to Professor: Used MUI library for better look</p>
       <img src={catdogdle} alt="Home" className="smaller-image" />
     </div>
   );
