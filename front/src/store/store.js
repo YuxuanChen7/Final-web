@@ -1,27 +1,29 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore } from "@reduxjs/toolkit";
 
 const initialState = {
-  attributes: []
+  attributes: [],
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'ADD_ATTRIBUTE':
+    case "ADD_ATTRIBUTE":
       return {
         ...state,
-        attributes: [...state.attributes, action.payload]
+        attributes: [...state.attributes, action.payload],
       };
-    case 'UPDATE_ATTRIBUTE':
+    case "UPDATE_ATTRIBUTE":
       return {
         ...state,
         attributes: state.attributes.map((attr, index) =>
           index === action.payload.index ? action.payload.value : attr
-        )
+        ),
       };
-    case 'REMOVE_ATTRIBUTE':
+    case "REMOVE_ATTRIBUTE":
       return {
         ...state,
-        attributes: state.attributes.filter((_, index) => index !== action.payload)
+        attributes: state.attributes.filter(
+          (_, index) => index !== action.payload
+        ),
       };
     default:
       return state;
@@ -30,8 +32,8 @@ const reducer = (state = initialState, action) => {
 
 const store = configureStore({
   reducer: {
-    attributes: reducer
-  }
+    attributes: reducer,
+  },
 });
 
 export default store;

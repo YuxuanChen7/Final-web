@@ -17,7 +17,10 @@ function Navbar() {
       sx={{ bgcolor: "black" }}
     >
       <Container maxWidth="x1">
-        <Toolbar disableGutters>
+        <Toolbar
+          disableGutters
+          sx={{ display: "flex", justifyContent: "center" }}
+        >
           <Typography
             variant="h6"
             noWrap
