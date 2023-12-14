@@ -44,78 +44,50 @@ app.get("/api/cats/:id", (req, res) => {
     res.json(filteredCats);
 });
 
-const userFavorites = {};
+const userFavorites = [];
 
-// Add a cat to the user's favorites
-app.post("/api/favorites/:userId/:catId", (req, res) => {
-    const userId = req.params.userId;
-    const catId = parseInt(req.params.catId);
+app.post("/api/favorites", (req, res) => {
+    const { color } = req.body;
 
-    // Check if the user has a favorites array, if not, create one
-    if (!userFavorites[userId]) {
-        userFavorites[userId] = [];
-    }
-
-    // Check if the cat with the specified ID exists
-    const cat = cats.find((cat) => cat.id === catId);
+    const cat = cats.find((cat) => cat.color === color.toLowerCase());
 
     if (!cat) {
         return res.status(404).json({ message: 'Cat not found' });
     }
 
-    // Check if the cat is already in the user's favorites
-    if (userFavorites[userId].find((favorite) => favorite.id === catId)) {
+    if (userFavorites.find((favorite) => favorite.id === cat.id)) {
         return res.status(400).json({ message: 'Cat is already in favorites' });
     }
 
-    // Add the cat to the user's favorites
-    userFavorites[userId].push(cat);
+    userFavorites.push({
+        id: cat.id,
+        name: cat.name,
+        age: cat.age,
+        color: cat.color
+    });
+
+    console.log('Cat added to favorites successfully:', cat);
 
     res.json({ message: 'Cat added to favorites successfully' });
 });
 
-// Get the user's favorite cats
-app.get("/api/favorites/:userId", (req, res) => {
-    const userId = req.params.userId;
-
-    // Check if the user has a favorites array, if not, create one
-    if (!userFavorites[userId]) {
-        userFavorites[userId] = [];
-    }
-
-    res.json(userFavorites[userId]);
+app.get("/api/favorites", (req, res) => {
+    res.json(userFavorites);
 });
 
-const addToFavorites = (userId, catId) => {
-  axios.post(`http://localhost:5000/api/favorites/${userId}/${catId}`)
-      .then(response => {
-          console.log(response.data.message);
-      })
-      .catch(error => {
-          console.error('Error adding cat to favorites:', error);
-      });
-};
+app.delete("/api/favorites/:catId", (req, res) => {
+    const catId = parseInt(req.params.catId);
 
-// Get user's favorite cats
-const getFavorites = (userId) => {
-  axios.get(`http://localhost:5000/api/favorites/${userId}`)
-      .then(response => {
-          const userFavorites = response.data;
-          console.log('User Favorites:', userFavorites);
-      })
-      .catch(error => {
-          console.error('Error fetching user favorites:', error);
-      });
-};
+    const catIndex = userFavorites.findIndex(cat => cat.id === catId);
 
-// Example usage
-const userId = 'uniqueUserId'; // Replace with a unique identifier for each user
-const catIdToAdd = 2; // Replace with the ID of the cat to add to favorites
+    if (catIndex !== -1) {
+        userFavorites.splice(catIndex, 1);
+        res.json({ message: 'Cat removed from favorites successfully' });
+    } else {
+        res.status(404).json({ message: 'Cat not found in favorites' });
+    }
+});
 
-addToFavorites(userId, catIdToAdd);
-getFavorites(userId);
-
-app.listen(5000)
-
-
-/* */
+app.listen(5000, () => {
+    console.log('Server is running on port 5000');
+});
