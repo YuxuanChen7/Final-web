@@ -1,9 +1,10 @@
-var express = require('express')
+var express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
-var app = express()
+const cors = require('cors');
+var app = express();
 
-
+app.use(cors());
 app.use(express.json());
 
 let cats  = [
@@ -16,10 +17,6 @@ let cats  = [
     { id: 7, name: "cat7", age: 3, color: "calico" },
     { id: 8, name: "cat8", age: 4, color: "tabby" },
 ];
-
-/*app.get("/api/cats", (req, res) => {
-    res.json(cats);
-});*/
 
 app.get("/api/cats/:id", (req, res) => {
     const id = parseInt(req.params.id);
@@ -34,16 +31,14 @@ app.get("/api/cats/:id", (req, res) => {
   });
   
   app.get("/api/cats", (req, res) => {
-    const { color, age } = req.query;
+    const { colors } = req.query;
 
     let filteredCats = cats;
 
-    if (color) {
-        filteredCats = filteredCats.filter(cat => cat.color.toLowerCase() === color.toLowerCase());
-    }
+    if (colors) {
+        const colorArray = colors.split(',');
 
-    if (age) {
-        filteredCats = filteredCats.filter(cat => cat.age === parseInt(age));
+        filteredCats = filteredCats.filter(cat => colorArray.includes(cat.color.toLowerCase()));
     }
 
     res.json(filteredCats);

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function App() {
-  const [backData, setbackData] = useState([{}]);
+  const [backData, setbackData] = useState({ users: [] }); // Initialize backData with an empty array for users
 
   useEffect(() => {
     fetch("/api")
@@ -14,12 +14,30 @@ function App() {
       });
   }, []);
 
+  const addToFavorites = (catId) => {
+
+    fetch(`/api/favorites/${userId}/${catId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.message);
+      })
+      .catch((error) => {
+        console.error("Error adding to favorites:", error);
+      });
+  };
+
   const renderCatInfo = (cat) => {
     return (
       <div key={cat.id}>
         <h3>{cat.name}</h3>
         <p>Age: {cat.age}</p>
         <p>Color: {cat.color}</p>
+        <button onClick={() => addToFavorites(cat.id)}>Add to Favorites</button>
         <hr />
       </div>
     );
@@ -27,15 +45,11 @@ function App() {
 
   return (
     <div>
-      {typeof backData.users === "undefined" ? (
-        <p>Loading....</p>
-      ) : backData.users === null ? (
+      {backData.users.length === 0 ? (
         <p>No users available</p>
       ) : (
-        backData.users.map((user, i) => <p key={i}>{user}</p>)
+        backData.users.map((user, i) => renderCatInfo(user))
       )}
-
-      <button onClick={addToFavorites}>Add to Favorites</button>
     </div>
   );
 }
