@@ -66,6 +66,16 @@ function Navbar() {
             >
               Result
             </Button>
+            <Button
+              component={Link}
+              to="/FavoritesList" 
+              sx={{
+                color: "white",
+                  ":hover": { bgcolor: "grey", color: "white" },
+              }}
+            >
+            FavoritesList
+            </Button>
           </Box>
         </Toolbar>
       </Container>
