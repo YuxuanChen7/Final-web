@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../database'); //import
+const sequelize = require('../database'); 
 
 const Attribute = sequelize.define('Attribute', {
     AttributeID: {

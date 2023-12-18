@@ -27,4 +27,6 @@ const Pet = sequelize.define('Pet', {
     }
 });
 
+//await Pet.sync()
+
 module.exports = Pet;
