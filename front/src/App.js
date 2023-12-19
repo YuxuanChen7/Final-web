@@ -4,16 +4,20 @@ import FavoritesList from "./FavoritesList"; // Import the FavoritesList compone
 
 function App() {
   const [backData, setbackData] = useState({ users: [] }); // Initialize backData with an empty array for users
+  const [isLoading, setIsLoading] = useState(true);
   const userId = navigator.userAgent; // Replace with the actual user ID
 
   useEffect(() => {
+    setIsLoading(true); // Start loading
     fetch("/api")
       .then((response) => response.json())
       .then((data) => {
         setbackData(data);
+        setIsLoading(false); // Stop loading once data is fetched
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
+        setIsLoading(false); // Stop loading if there's an error
       });
   }, []);
 
