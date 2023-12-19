@@ -10,6 +10,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
+import CatFact from "./components/CatFact/CatFact";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
