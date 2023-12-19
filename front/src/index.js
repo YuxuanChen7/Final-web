@@ -18,6 +18,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store/store.js";
 
+const NotFound = () => {
+  return (
+    <div>
+      <h2>404 Not Found</h2>
+      <p>The page you are looking for does not exist.</p>
+    </div>
+  );
+};
+
 const App = () => {
   return (
     <div>
@@ -25,6 +34,7 @@ const App = () => {
     </div>
   );
 };
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -40,6 +50,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/addpet" element={<AddPet />} />
           <Route path="/catfact"  element={<CatFact />} />
           <Route path="/catpic" element={<CatPic />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </Provider>
