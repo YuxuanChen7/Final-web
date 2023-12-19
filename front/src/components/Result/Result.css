@@ -1,0 +1,9 @@
+.result-item {
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.3s ease;
+  }
+
+  .result-item:hover {
+    background-color: lightgray;
+  }

@@ -11,6 +11,7 @@ import FavoritesList from "./components/FavoritesList/FavoritesList";
 import CatFact from "./components/CatFact/CatFact"
 import AddPet from "./components/AddPet/AddPet";
 import CatPic from "./components/CatPic/CatPic";
+import DetailedView from "./components/DetailedView/DetailedView";
 import "./styles/global.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -33,6 +34,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/pet/:id" element={<DetailedView />} />
           <Route path="/result" element={<Result />} />
           {/* <Route path="/FavoritesList" element={<FavoritesList />} /> */}
           <Route path="/addpet" element={<AddPet />} />
