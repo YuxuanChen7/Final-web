@@ -32,7 +32,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/" element={<Homepage />} />
           <Route path="/search" element={<Search />} />
           <Route path="/result" element={<Result />} />
-          <Route path="/FavoritesList" element={<FavoritesList />} />
+          {/* <Route path="/FavoritesList" element={<FavoritesList />} /> */}
           <Route path="/addpet" element={<AddPet />} />
         </Routes>
       </BrowserRouter>
