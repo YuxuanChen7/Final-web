@@ -21,6 +21,7 @@ root.render(
           <Route path="/" element={<Homepage />} />
           <Route path="/search" element={<Search />} />
           <Route path="/result" element={<Result />} />
+          <Route path="/catfact" element={<CatFact />} />
         </Routes>
       </BrowserRouter>
     </Provider>
