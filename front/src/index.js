@@ -8,7 +8,9 @@ import Search from "./components/Search/Search";
 import Navbar from "./components/Navbar/Navbar";
 import Result from "./components/Result/Result";
 import FavoritesList from "./components/FavoritesList/FavoritesList";
+import CatFact from "./components/CatFact/CatFact"
 import AddPet from "./components/AddPet/AddPet";
+import CatPic from "./components/CatPic/CatPic";
 import "./styles/global.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -34,6 +36,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route path="/result" element={<Result />} />
           {/* <Route path="/FavoritesList" element={<FavoritesList />} /> */}
           <Route path="/addpet" element={<AddPet />} />
+          <Route path="/catfact"  element={<CatFact />} />
+          <Route path="/catpic" element={<CatPic />} />
         </Routes>
       </BrowserRouter>
     </Provider>

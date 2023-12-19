@@ -89,6 +89,26 @@ function Navbar() {
             >
               Add-Pet
             </Button>
+            <Button
+              component={Link}
+              to="/CatFact"
+              sx={{
+                color: "white",
+                ":hover": { bgcolor: "grey", color: "white" },
+              }}
+            >
+              Cat-Fact
+            </Button>
+            <Button
+              component={Link}
+              to="/CatPic"
+              sx={{
+                color: "white",
+                ":hover": { bgcolor: "grey", color: "white" },
+              }}
+            >
+              Cat-Pic
+            </Button>
           </Box>
         </Toolbar>
       </Container>
