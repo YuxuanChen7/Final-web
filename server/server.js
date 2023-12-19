@@ -7,6 +7,12 @@ var app = express();
 app.use(cors());
 app.use(express.json());
 
+//import for ZZ's model
+const Pet = require("./models/pet");
+const Attribute = require("./models/attribute");
+const PetAttribute = require("./models/petAttribute");
+
+//start of YX's section
 let cats = [
   { id: 1, name: "cat1", age: 3, color: "gray" },
   { id: 2, name: "cat2", age: 2, color: "black" },
@@ -89,6 +95,189 @@ app.delete("/api/favorites/:catId", (req, res) => {
     res.status(404).json({ message: "Cat not found in favorites" });
   }
 });
+//end of YX's section
+//start of ZZ's section
+app.use(bodyParser.json());
+//Pet Model/Table
+app.post("/pets", async (req, res) => {
+  try {
+    const pet = await Pet.create(req.body);
+    res.status(201).json(pet);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+app.get("/pets", async (req, res) => {
+  try {
+    const pets = await Pet.findAll();
+    res.json(pets);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/pets/:id", async (req, res) => {
+  try {
+    const pet = await Pet.findByPk(req.params.id);
+    if (pet) {
+      res.json(pet);
+    } else {
+      res.status(404).json({ error: "Pet not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.put("/pets/:id", async (req, res) => {
+  try {
+    const pet = await Pet.findByPk(req.params.id);
+    if (pet) {
+      await pet.update(req.body);
+      res.json(pet);
+    } else {
+      res.status(404).json({ error: "Pet not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete("/pets/:id", async (req, res) => {
+  try {
+    const pet = await Pet.findByPk(req.params.id);
+    if (pet) {
+      await pet.destroy();
+      res.status(204).end();
+    } else {
+      res.status(404).json({ error: "Pet not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+//Attribute Model/Table
+app.post("/attributes", async (req, res) => {
+  try {
+    const attribute = await Attribute.create(req.body);
+    res.status(201).json(attribute);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+app.get("/attributes", async (req, res) => {
+  try {
+    const attributes = await Attribute.findAll();
+    res.json(attributes);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/attributes/:id", async (req, res) => {
+  try {
+    const attribute = await Attribute.findByPk(req.params.id);
+    if (attribute) {
+      res.json(attribute);
+    } else {
+      res.status(404).json({ error: "Attribute not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.put("/attributes/:id", async (req, res) => {
+  try {
+    const attribute = await Attribute.findByPk(req.params.id);
+    if (attribute) {
+      await attribute.update(req.body);
+      res.json(attribute);
+    } else {
+      res.status(404).json({ error: "Attribute not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete("/attributes/:id", async (req, res) => {
+  try {
+    const attribute = await Attribute.findByPk(req.params.id);
+    if (attribute) {
+      await attribute.destroy();
+      res.status(204).end();
+    } else {
+      res.status(404).json({ error: "Attribute not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Pet-Attribute Table/Model
+app.post("/petAttributes", async (req, res) => {
+  try {
+    const petAttribute = await PetAttribute.create(req.body);
+    res.status(201).json(petAttribute);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
+app.get("/petAttributes", async (req, res) => {
+  try {
+    const petAttributes = await PetAttribute.findAll();
+    res.json(petAttributes);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.get("/petAttributes/:id", async (req, res) => {
+  try {
+    const petAttribute = await PetAttribute.findByPk(req.params.id);
+    if (petAttribute) {
+      res.json(petAttribute);
+    } else {
+      res.status(404).json({ error: "PetAttribute not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.put("/petAttributes/:id", async (req, res) => {
+  try {
+    const petAttribute = await PetAttribute.findByPk(req.params.id);
+    if (petAttribute) {
+      await petAttribute.update(req.body);
+      res.json(petAttribute);
+    } else {
+      res.status(404).json({ error: "PetAttribute not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.delete("/petAttributes/:id", async (req, res) => {
+  try {
+    const petAttribute = await PetAttribute.findByPk(req.params.id);
+    if (petAttribute) {
+      await petAttribute.destroy();
+      res.status(204).end();
+    } else {
+      res.status(404).json({ error: "PetAttribute not found" });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+//end of ZZ's section
 
 app.listen(5000, () => {
   console.log("Server is running on port 5000");
