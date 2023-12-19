@@ -7,26 +7,9 @@ const Pet = sequelize.define('Pet', {
         primaryKey: true,
         autoIncrement: true
     },
-    Type: {
+    name: {
         type: Sequelize.STRING
-    },
-    Breed: {
-        type: Sequelize.STRING
-    },
-    Size: {
-        type: Sequelize.STRING
-    },
-    Color: {
-        type: Sequelize.STRING
-    },
-    PictureURL: {
-        type: Sequelize.STRING
-    },
-    Hair: {
-        type: Sequelize.INTEGER
     }
 });
-
-//await Pet.sync()
 
 module.exports = Pet;

@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = require('../database'); 
+const sequelize = require('../database');
 
 const Attribute = sequelize.define('Attribute', {
     AttributeID: {
@@ -7,10 +7,10 @@ const Attribute = sequelize.define('Attribute', {
         primaryKey: true,
         autoIncrement: true
     },
-    AttributeName: {
+    AttributeType: {
         type: Sequelize.STRING
     },
-    AttributeType: {
+    AttributeValue: {
         type: Sequelize.STRING
     }
 });
