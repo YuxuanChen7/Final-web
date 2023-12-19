@@ -20,24 +20,24 @@ function Search() {
   const handleRemoveAttribute = (index) => {
     dispatch({ type: "REMOVE_ATTRIBUTE", payload: index });
   };
-  
+
   const handleSearch = async () => {
     try {
-      const queryParams = {
-        colors: attributes.map(attr => attr.toLowerCase()).join(',')
-      };
-  
-      console.log("Query Params:", queryParams);
-  
-      const response = await axios.get(`http://localhost:5000/api/cats`, { params: queryParams });
-  
-      console.log("Search Results:", response.data);
-      navigate('/result', { state: { searchResults: response.data } });
+      if (attributes.length > 0) {
+        const attributeValue = attributes[0];
+
+        const response = await axios.get(`http://localhost:5000/api/searchPetsByAttributeValue`, {
+          params: { attributeValue }
+        });
+
+        navigate('/result', { state: { searchResults: response.data } });
+      } else {
+        console.error('No attributes specified for search');
+      }
     } catch (error) {
-      console.error('Error fetching cats by attributes:', error);
+      console.error('Error fetching pets by attributes:', error);
     }
   };
-  
 
   return (
     <div>

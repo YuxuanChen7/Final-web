@@ -68,13 +68,23 @@ function Navbar() {
             </Button>
             <Button
               component={Link}
-              to="/FavoritesList" 
+              to="/FavoritesList"
               sx={{
                 color: "white",
                   ":hover": { bgcolor: "grey", color: "white" },
               }}
             >
-            FavoritesList
+            Favorites-List
+            </Button>
+            <Button
+              component={Link}
+              to="/AddPet"
+              sx={{
+                color: "white",
+                  ":hover": { bgcolor: "grey", color: "white" },
+              }}
+            >
+            Add-Pet
             </Button>
           </Box>
         </Toolbar>
