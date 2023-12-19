@@ -1,5 +1,6 @@
 import React from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
+import './Result.css'
 
 function Result() {
   const location = useLocation();
@@ -12,7 +13,9 @@ function Result() {
         <ul>
           {searchResults.map(pet => (
             <li key={pet.PetID}>
-              {pet.name} - Attributes: {pet.Attributes.map(attr => `${attr.AttributeType}: ${attr.AttributeValue}`).join(', ')}
+              <Link to={{ pathname: `/pet/${pet.PetID}`, state: { pet } }} className="result-item">
+                {pet.name} - Attributes: {pet.Attributes.map(attr => `${attr.AttributeType}: ${attr.AttributeValue}`).join(', ')}
+              </Link>
             </li>
           ))}
         </ul>
@@ -24,3 +27,4 @@ function Result() {
 }
 
 export default Result;
+

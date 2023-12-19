@@ -13,14 +13,6 @@ sequelize
     console.error("Unable to connect to the database:", err);
   });
 
-/*
-Pet.belongsToMany(Attribute, { through: PetAttribute, foreignKey: "PetID" });
-Attribute.belongsToMany(Pet, {
-  through: PetAttribute,
-  foreignKey: "AttributeID",
-});
-*/
-
 Pet.belongsToMany(Attribute, { through: PetAttribute });
 Attribute.belongsToMany(Pet, { through: PetAttribute });
 

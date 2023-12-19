@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./CatPic.css";
 
 export default function Cat() {
   const [Catimage, setcatimage] = useState(null);
@@ -16,7 +17,9 @@ export default function Cat() {
     <>
       <h2>Random Cat Picture</h2>
       <h2>
-        <button onClick={handleGetRandomCat}>Get a Random Cat</button>
+        <button onClick={handleGetRandomCat} className="button-style">
+          Get a Random Cat
+        </button>
       </h2>
       {Catimage && <img src={Catimage} alt="Cat" />}
     </>
