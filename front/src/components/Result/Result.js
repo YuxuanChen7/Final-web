@@ -5,36 +5,20 @@ function Result() {
   const location = useLocation();
   const searchResults = location.state?.searchResults || [];
 
-  const addToFavorites = (catColor) => {
-    fetch("/api/favorites", {  // Update the endpoint to the new simplified one
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ color: catColor }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data.message);
-      })
-      .catch((error) => {
-        console.error("Error adding to favorites:", error);
-      });
-  };
-
   return (
     <div>
       <h1>Search Results</h1>
-      <ul>
-        {searchResults.map(cat => (
-          <li key={cat.id}>
-            {cat.name} - Age: {cat.age}, Color: {cat.color}
-            <button onClick={() => addToFavorites(cat.color)}>
-              Add to Favorites
-            </button>
-          </li>
-        ))}
-      </ul>
+      {searchResults.length > 0 ? (
+        <ul>
+          {searchResults.map(pet => (
+            <li key={pet.PetID}>
+              {pet.name} - Attributes: {pet.Attributes.map(attr => `${attr.AttributeType}: ${attr.AttributeValue}`).join(', ')}
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No pets found with the specified attributes.</p>
+      )}
     </div>
   );
 }

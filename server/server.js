@@ -7,6 +7,8 @@ var app = express();
 app.use(cors());
 app.use(express.json());
 
+require('./index.js');
+
 //import for ZZ's model
 const Pet = require("./models/pet");
 const Attribute = require("./models/attribute");
@@ -277,6 +279,32 @@ app.delete("/petAttributes/:id", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+//special filtering API that captures all the query all the items by attribute
+app.get('/api/searchPetsByAttributeValue', async (req, res) => {
+  try {
+    // Extract attributeValue query parameter
+    const { attributeValue } = req.query;
+
+    if (!attributeValue) {
+      return res.status(400).json({ error: "Attribute value is required" });
+    }
+
+    const pets = await Pet.findAll({
+      include: [{
+        model: Attribute,
+        where: { AttributeValue: attributeValue },
+        required: true // Only include pets that have matching attributes
+      }]
+    });
+
+    res.json(pets);
+  } catch (error) {
+    console.error("Error in /api/searchPetsByAttributeValue:", error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 //end of ZZ's section
 
 app.listen(5000, () => {
