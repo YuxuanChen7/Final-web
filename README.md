@@ -49,7 +49,3 @@ We use Express in combination with Sequelize to handle CRUD operations.
 
 6. **Get Associated Instances**
    - [Get Associated Instances Route](https://github.com/YuxuanChen7/Final-web/blob/master/server/server.js) (Line 284-307)
-
-## Additional Information
-
-Please refer to the provided links for detailed code and implementation of each model and route.
