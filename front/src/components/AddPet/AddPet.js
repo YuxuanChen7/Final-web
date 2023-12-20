@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import axios from "axios";
 import "./AddPet.css";
 
@@ -6,6 +6,7 @@ const AddPet = () => {
   const [petName, setPetName] = useState("");
   const [attributeType, setAttributeType] = useState("");
   const [attributeValue, setAttributeValue] = useState("");
+  const [pets, setPets] = useState([]);
 
   const handleNameChange = (e) => setPetName(e.target.value);
   const handleTypeChange = (e) => setAttributeType(e.target.value);
@@ -51,8 +52,30 @@ const AddPet = () => {
     }
   };
 
+  const fetchPets = async () => {
+    try {
+      const response = await axios.get("http://localhost:5000/pets");
+      setPets(response.data);
+    } catch (error) {
+      console.error("Error fetching pets:", error);
+      alert("An error occurred while fetching the pets.");
+    }
+  };
+
+  useEffect(() => {
+    fetchPets();
+  }, []);
+
   return (
     <div>
+      <div className="pets-list">
+        <h2>Pets List</h2>
+        {pets.map((pet) => (
+          <div key={pet.id} className="pet-item">
+            <span>{pet.name}</span>
+          </div>
+        ))}
+      </div>
       <h1>Add a New Pet</h1>
       <form onSubmit={handleSubmit}>
         <div>
