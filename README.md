@@ -1,5 +1,8 @@
 ## Project Implementation Notes
 
+### How to Run
+- It is ran locally on ZhanpZ's computer by doing both node server.js in the backend folder and also npm start in the frontend folder. But do realize to install all the dependencies. 
+
 ### Use of GPT in Development
 - GPT was utilized to debug and create repetitive routes/functions. For example, the GET express routes for `attribute` and `pet` are similar, and GPT helped to save time in replicating these routes. Also this markdown is generated with GPT after writing the general info(link and lines). 
 
