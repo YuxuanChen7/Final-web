@@ -1,4 +1,16 @@
-# Final-web
+## Project Implementation Notes
+
+### Use of GPT in Development
+- GPT was utilized to debug and create repetitive routes/functions. For example, the GET express routes for `attribute` and `pet` are similar, and GPT helped to save time in replicating these routes. Also this markdown is generated with GPT after writing the general info(link and lines). 
+
+### Integration of External APIs
+- The two external APIs used in this project were directly pulled from our team's previous APIs homework. These APIs are integrated into the `cat-fact` and `cat-pic` routes/components.
+
+### Use of axios and MUI
+- `axios` and Material-UI (MUI) were employed to simplify the implementation process. These tools were not explicitly taught but were chosen for their efficiency and ease of use in the project.
+
+### Code Versioning Note
+- The code lines referenced in this document are as per their state on 12/20/2023. It's important to note that future changes to the codebase may affect the accuracy of these references.
 
 # Backend Requirements
 
