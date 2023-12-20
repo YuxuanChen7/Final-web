@@ -8,6 +8,8 @@ const AddPet = () => {
   const [attributeValue, setAttributeValue] = useState("");
   const [pets, setPets] = useState([]);
   const [deletePetId, setDeletePetId] = useState("");
+  const [updatePetId, setUpdatePetId] = useState("");
+  const [newPetName, setNewPetName] = useState("");
 
   const handleNameChange = (e) => setPetName(e.target.value);
   const handleTypeChange = (e) => setAttributeType(e.target.value);
@@ -83,6 +85,27 @@ const AddPet = () => {
     }
   };
 
+  const handleUpdateSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!updatePetId || !newPetName) {
+      alert("Please enter both the Pet ID and the new name.");
+      return;
+    }
+
+    try {
+      await axios.put(`http://localhost:5000/pets/${updatePetId}`, {
+        name: newPetName,
+      });
+      setUpdatePetId("");
+      setNewPetName("");
+      fetchPets();
+    } catch (error) {
+      console.error("Error occurred while updating the pet:", error);
+      alert("An error occurred while updating the pet.");
+    }
+  };
+
   useEffect(() => {
     fetchPets();
   }, []);
@@ -146,6 +169,26 @@ const AddPet = () => {
             required
           />
           <button type="submit">Delete Pet</button>
+        </form>
+      </div>
+      <div className="update-pet-form">
+        <h2>Update Pet Name</h2>
+        <form onSubmit={handleUpdateSubmit}>
+          <input
+            type="text"
+            value={updatePetId}
+            onChange={(e) => setUpdatePetId(e.target.value)}
+            placeholder="Enter Pet ID"
+            required
+          />
+          <input
+            type="text"
+            value={newPetName}
+            onChange={(e) => setNewPetName(e.target.value)}
+            placeholder="Enter New Pet Name"
+            required
+          />
+          <button type="submit">Update Pet</button>
         </form>
       </div>
     </div>
