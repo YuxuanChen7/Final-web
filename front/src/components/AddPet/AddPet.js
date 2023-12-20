@@ -1,4 +1,4 @@
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./AddPet.css";
 
@@ -7,6 +7,7 @@ const AddPet = () => {
   const [attributeType, setAttributeType] = useState("");
   const [attributeValue, setAttributeValue] = useState("");
   const [pets, setPets] = useState([]);
+  const [deletePetId, setDeletePetId] = useState("");
 
   const handleNameChange = (e) => setPetName(e.target.value);
   const handleTypeChange = (e) => setAttributeType(e.target.value);
@@ -50,6 +51,8 @@ const AddPet = () => {
       alert("An error occurred while adding the pet.");
       console.error(error);
     }
+
+    await fetchPets(); //basically refreshing
   };
 
   const fetchPets = async () => {
@@ -62,6 +65,24 @@ const AddPet = () => {
     }
   };
 
+  const handleDeleteSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!deletePetId) {
+      alert("Please enter a pet ID to delete.");
+      return;
+    }
+
+    try {
+      await axios.delete(`http://localhost:5000/pets/${deletePetId}`);
+      setDeletePetId("");
+      fetchPets();
+    } catch (error) {
+      console.error("Error occurred while deleting the pet:", error);
+      alert("An error occurred while deleting the pet.");
+    }
+  };
+
   useEffect(() => {
     fetchPets();
   }, []);
@@ -71,8 +92,10 @@ const AddPet = () => {
       <div className="pets-list">
         <h2>Pets List</h2>
         {pets.map((pet) => (
-          <div key={pet.id} className="pet-item">
-            <span>{pet.name}</span>
+          <div key={pet.PetID} className="pet-item">
+            <span>
+              ID: {pet.PetID} - Name: {pet.name}
+            </span>
           </div>
         ))}
       </div>
@@ -112,6 +135,19 @@ const AddPet = () => {
           Add Pet
         </button>
       </form>
+      <div className="delete-pet-form">
+        <h2>Delete a Pet</h2>
+        <form onSubmit={handleDeleteSubmit}>
+          <input
+            type="text"
+            value={deletePetId}
+            onChange={(e) => setDeletePetId(e.target.value)}
+            placeholder="Enter Pet ID"
+            required
+          />
+          <button type="submit">Delete Pet</button>
+        </form>
+      </div>
     </div>
   );
 };
