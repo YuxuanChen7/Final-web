@@ -7,14 +7,12 @@
 - The two external APIs used in this project were directly pulled from our team's previous APIs homework. These APIs are integrated into the `cat-fact` and `cat-pic` routes/components.
 
 ### Use of axios and MUI
-- `axios` and Material-UI (MUI) were employed to simplify the implementation process. These tools were not explicitly taught but were chosen for their efficiency and ease of use in the project.
+- `axios` and Material-UI (MUI) were employed to simplify the implementation process. 
 
 ### Code Versioning Note
-- The code lines referenced in this document are as per their state on 12/20/2023. It's important to note that future changes to the codebase may affect the accuracy of these references.
+- The code lines referenced in this document are as per their state on 12/20/2023. 
 
 # Backend Requirements
-
-This document outlines the backend requirements for our project, including database models and API routes.
 
 ## Database Requirements
 
@@ -63,8 +61,6 @@ We use Express in combination with Sequelize to handle CRUD operations.
    - [Get Associated Instances Route](https://github.com/YuxuanChen7/Final-web/blob/master/server/server.js) (Line 284-307)
 
 # Frontend Requirements
-
-This document outlines the frontend requirements for our project, including UI components, routing, state management, and API calls.
 
 ## UI Requirements
 
