@@ -165,10 +165,13 @@ const AddPet = () => {
             type="text"
             value={deletePetId}
             onChange={(e) => setDeletePetId(e.target.value)}
-            placeholder="Enter Pet ID"
             required
+            placeholder="Pet ID"
+            className="input-style"
           />
-          <button type="submit">Delete Pet</button>
+          <button type="submit" className="button-style">
+            Delete Pet
+          </button>
         </form>
       </div>
       <div className="update-pet-form">
@@ -178,17 +181,21 @@ const AddPet = () => {
             type="text"
             value={updatePetId}
             onChange={(e) => setUpdatePetId(e.target.value)}
-            placeholder="Enter Pet ID"
+            placeholder="Pet ID"
             required
+            className="input-style"
           />
           <input
             type="text"
             value={newPetName}
             onChange={(e) => setNewPetName(e.target.value)}
-            placeholder="Enter New Pet Name"
+            placeholder="New Pet Name"
             required
+            className="input-style"
           />
-          <button type="submit">Update Pet</button>
+          <button type="submit" className="button-style">
+            Update Pet
+          </button>
         </form>
       </div>
     </div>
